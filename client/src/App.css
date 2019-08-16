@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+}
+
+.search {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-page {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav {
+    float:left;
+}
+
+.home {
+  text-align: absolute;
+  top: 50%;
+  left: 50%;
+}

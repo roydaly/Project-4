@@ -1,0 +1,1 @@
+// This is where the search page or favs page will be displayed. 
