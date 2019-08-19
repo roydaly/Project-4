@@ -5,6 +5,7 @@ export default function Trades() {
 
   return (
        <>
+       Enter Trades Here!
         </>
   );
 }

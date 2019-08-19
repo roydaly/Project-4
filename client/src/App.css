@@ -21,7 +21,7 @@
 }
 
 .home {
-  text-align: absolute;
-  top: 50%;
-  left: 50%;
+  text-align: center;
+  display: absolute;
+  justify-content: center;
 }
