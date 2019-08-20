@@ -6,21 +6,18 @@ import axios from 'axios';
 
 export default function Search() {
   const [query, setQuery] = useState("");
-  const [data, setData] = useState([{}]);
-  
-//   useEffect(() => {
-//     axios.get(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${query}&apikey=${process.env.API_KEY}`)
-//     .then(result => setData(result.data));
-//       console.log(data.name)
-//   }, []);
+  const [data, setData] = useState([]);
 
-  const handleSubmit = ((e) => {
-    e.preventDefault();
+    const handleSubmit = (event) => {
+        event.preventDefault();
         axios.get(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${query}&apikey=${process.env.API_KEY}`)
-        .then(result => setData(result.data));
-          console.log(data.name)
-      }, []);
-
+        .then(res => {
+            let data = res.data.bestMatches
+            setData(data)
+            console.log(data[0]["6. marketClose"])
+        })
+    }
+       
   return (
       <>
         <div className='search'>
@@ -31,20 +28,19 @@ export default function Search() {
         <input
           type="text"
           name="query"
-          placeholder="Enter company name here.."
+          placeholder="Enter company name..."
           value={query}
           onChange={e => setQuery(e.target.value)}
         />
-      <button onClick={handleSubmit} type="submit">Submit</button>
+      <button onClick={handleSubmit}>Submit</button>
       </form>
     </div>
-    {/* // <div>
-    //     <ul>
-    //         {data.map(data => {
-    //         <li > {data.name}</li>
-    //         })}
-    //     </ul>
-    // </div> */}
+        <div>
+            {data.map((data, index) => (
+            <div key={index}>{data['2. name']}</div>
+            ))}
+        </div>
     </>
   );
 }
+
