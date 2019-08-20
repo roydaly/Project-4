@@ -77,6 +77,12 @@ class App extends React.Component {
 }
 
   render() {
+    // var token = this.state.token
+    var config = {
+      headers: {
+          Authorization: `Bearer ${this.state.token}`
+      }
+  }
     var user = this.state.user
     var contents = ''
     if (user) {
@@ -93,7 +99,7 @@ class App extends React.Component {
             <Route exact path="/home" render={() => < Home user={user}  />} />
             <Route exact path="/search" component={Search} />
             <Route exact path="/trades" component={Trades} />
-            <Route exact path="/favorites" component={Favorites} />
+            <Route exact path="/favorites" render={() => < Favorites config={config} />} />
           </div>
         </>
       );

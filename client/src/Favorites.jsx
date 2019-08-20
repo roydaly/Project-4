@@ -2,20 +2,23 @@ import React, { useState, useEffect } from "react";
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import axios from "axios";
 
-export default function Favorites() {
+export default function Favorites({config}) {
     const [favorites, setFavorites] = useState([]);
+    const url = '/api/stocks';
 
-    useEffect(() =>
-    axios.get('/api/stocks', )
-     .then(res => {
-        let favorites = res.data
-        setFavorites(favorites)
-    }))
+    useEffect(() =>{
+        axios.get(url, config)
+         .then(res => {
+            let favorites = res.data
+            setFavorites(favorites)
+        })
+    },[])
     
   return (
-        <>
-        <div>{favorites}</div>
-        </>
+    <div>
+    {favorites.map((favorite, index) => {
+    return <div key={index}>{favorite.name} - {favorite.ticker}</div>})}
+</div>
   );
 }
 
