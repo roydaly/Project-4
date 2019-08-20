@@ -6,18 +6,20 @@ import axios from 'axios';
 
 export default function Search() {
   const [query, setQuery] = useState("");
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([{}]);
   
-  useEffect(() => {
-    axios.get(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${query}&apikey=${process.env.API_KEY}`)
-    .then(result => setData(result.data));
-      console.log(data.name)
-  });
+//   useEffect(() => {
+//     axios.get(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${query}&apikey=${process.env.API_KEY}`)
+//     .then(result => setData(result.data));
+//       console.log(data.name)
+//   }, []);
 
-
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-}
+  const handleSubmit = ((e) => {
+    e.preventDefault();
+        axios.get(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${query}&apikey=${process.env.API_KEY}`)
+        .then(result => setData(result.data));
+          console.log(data.name)
+      }, []);
 
   return (
       <>
@@ -25,7 +27,7 @@ export default function Search() {
             <h1>Search for a Company below:</h1>
         </div>
         <div className='search-page'>
-    <form onSubmit={handleSubmit}>
+    <form>
         <input
           type="text"
           name="query"
@@ -33,7 +35,7 @@ export default function Search() {
           value={query}
           onChange={e => setQuery(e.target.value)}
         />
-      <button onSubmit={handleSubmit} type="submit">Submit</button>
+      <button onClick={handleSubmit} type="submit">Submit</button>
       </form>
     </div>
     {/* // <div>
