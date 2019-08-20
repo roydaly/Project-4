@@ -7,6 +7,8 @@ import axios from 'axios';
 export default function Search() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
+  const [ticker, setTicker] = useState(null);
+  const [stockData, setStockData] = useState([]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -14,9 +16,19 @@ export default function Search() {
         .then(res => {
             let data = res.data.bestMatches
             setData(data)
-            console.log(data[0]["6. marketClose"])
+            // console.log(data[0]["6. marketClose"])
         })
     }
+
+    // const handleStockDetail = (event) => {
+    //     event.preventDefault();
+    //     axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&interval=5min&outputsize=full&apikey${process.env.API_KEY}`)
+    //     .then(res => {
+    //         let stockData = res.data.daily
+    //         setStockData(stockData)
+    //         console.log(stockData)
+    //     })
+    // }
        
   return (
       <>
@@ -36,11 +48,12 @@ export default function Search() {
       </form>
     </div>
         <div>
-            {data.map((data, index) => (
-            <div key={index}>{data['2. name']}</div>
-            ))}
+            {data.map((data, index) => {
+            return <div onClick={() => setTicker(data['1. symbol'])} key={index}>{data['2. name']}</div>})}
         </div>
     </>
   );
 }
 
+
+// handleStockDetail(data['1. symbol'])}
