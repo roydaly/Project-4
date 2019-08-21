@@ -1,68 +1,37 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##Project 4
 
-## Available Scripts
+(https://i.ibb.co/MhnssNL/IMG-6831.jpg)
+(https://i.ibb.co/cXjtS5r/IMG-6833.jpg)
+(https://i.ibb.co/DDk26Fx/IMG-6834.jpg)
+(https://i.ibb.co/znbsX6S/IMG-6835.jpg)
+(https://i.ibb.co/7X1cKfM/IMG-6836.jpg)
 
-In the project directory, you can run:
+##Project Planning
+I started out by figuring out how the user would interact with the website. The first page is where the user either logs in or signs up. From there they are taken to the home page. Then they have the option to either select the search, trades or favorties page from the nav bar. After I had that figured out, I decided to work on planning what information I needed to save to the database. Lastly, I had to make sure my API could produce all of the information I needed. The API wasnt the easiest to use but after a lot of work, I was able to get the information to render on the page. 
 
-### `npm start`
+##Project Coding
+During this phase I started building the backend routes and a skeleton structure of the site. I was able to make sure the routes were working by utilizing Postman. The bare bones skeleton of the website was set and then I moved on to the logic of our website. I decided to use ReactRouter for frontend navigation and used React Hooks. While working on this part of the project, I had some slight hiccups with getting data to save, edit and delete. This was due to a token error and having protected routes. Once I was able to ping the API, save data and delete, I was finally at MVP. Whats next? I have quite a few things on my wishlist and also would like to learn and utilize other dependencies. Lastly, I would like to spend some time on CSS and produce a visual masterpiece. 
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+##Wish List
+Buttons for edit and delete
+Display page for one stock with more info
+Trade tracker feature that allows you to save trade information and track progress 
+Styling
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+##Dependencies
+React
+ReactRouter
+React Hooks
+HTML
+CSS
+MongoDB
+Mongoose
+Node.js
+Express
+Postman
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+##Support/Sources
+GA Teacher Staff
+StackOverFlow.com
+CSS-Tricks.com
+ReactJS.org 
