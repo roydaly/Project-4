@@ -34,28 +34,28 @@ class App extends React.Component {
       })
     } else {
       // we found a token in local storage...now verify it
-      axios.post('/auth/me/from/token', {token})
-      .then(res => {
-        if (res.data.type === 'error') {
-          localStorage.removeItem('mernToken')
-          this.setState({
-            token: '',
-            user: null,
-            errorMessage: res.data.message
-           })
-        } else {
-          localStorage.setItem('mernToken', res.data.token);
-          this.setState({
-            token: res.data.token,
-            user: res.data.user,
-            errorMessage: ''
-          })
-        }
-      })
+      axios.post('/auth/me/from/token', { token })
+        .then(res => {
+          if (res.data.type === 'error') {
+            localStorage.removeItem('mernToken')
+            this.setState({
+              token: '',
+              user: null,
+              errorMessage: res.data.message
+            })
+          } else {
+            localStorage.setItem('mernToken', res.data.token);
+            this.setState({
+              token: res.data.token,
+              user: res.data.user,
+              errorMessage: ''
+            })
+          }
+        })
     }
   }
 
-  liftToken({token, user}) {
+  liftToken({ token, user }) {
     this.setState({
       token,
       user
@@ -74,21 +74,21 @@ class App extends React.Component {
       token: '',
       user: null
     })
-}
+  }
 
   render() {
     // var token = this.state.token
     var config = {
       headers: {
-          Authorization: `Bearer ${this.state.token}`
+        Authorization: `Bearer ${this.state.token}`
       }
-  }
+    }
     var user = this.state.user
     var contents = ''
     if (user) {
       contents = (
         <>
-        <nav>
+          <nav>
             <Link to="/home">Home</Link>{' | '}
             <Link to="/search">Search</Link>{' | '}
             <Link to="/trades">Trades</Link>{' | '}
@@ -96,7 +96,7 @@ class App extends React.Component {
             <Link onClick={this.logout}>Logout</Link>
           </nav>
           <div>
-            <Route exact path="/home" render={() => < Home user={user}  />} />
+            <Route exact path="/home" render={() => < Home user={user} />} />
             <Route exact path="/search" render={() => < Search config={config} />} />
             <Route exact path="/trades" component={Trades} />
             <Route exact path="/favorites" render={() => < Favorites config={config} />} />
@@ -106,15 +106,15 @@ class App extends React.Component {
     } else {
       contents = (
         <>
-        <p>Please signup or login</p>
-        <Login liftToken={this.liftToken}/>
-        <Signup liftToken={this.liftToken}/>
+          <p>Please signup or login</p>
+          <Login liftToken={this.liftToken} />
+          <Signup liftToken={this.liftToken} />
         </>
       );
     }
-    return(
+    return (
       <Router>
-      {contents}
+        {contents}
       </Router>
     );
   }
