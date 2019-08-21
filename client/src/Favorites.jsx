@@ -56,7 +56,6 @@ export default function Favorites({ config }) {
                     handleDelete(current)
                 }} key={index}>{favorite.name} - {favorite.ticker} </div>
             })}
-            <input type="text" placeholder="Enter new name" />
         </div>
     );
 }

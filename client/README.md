@@ -14,6 +14,7 @@ During this phase I started building the backend routes and a skeleton structure
 
 ##Wish List
 Buttons for edit and delete
+Adding reactions to clicks
 Display page for one stock with more info
 Trade tracker feature that allows you to save trade information and track progress 
 Styling
