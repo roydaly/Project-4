@@ -97,7 +97,7 @@ class App extends React.Component {
           </nav>
           <div>
             <Route exact path="/home" render={() => < Home user={user}  />} />
-            <Route exact path="/search" component={Search} />
+            <Route exact path="/search" render={() => < Search config={config} />} />
             <Route exact path="/trades" component={Trades} />
             <Route exact path="/favorites" render={() => < Favorites config={config} />} />
           </div>

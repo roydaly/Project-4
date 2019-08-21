@@ -1,14 +1,16 @@
 // This is where the search page will go. 
 
 import React, { useState, useEffect } from "react";
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Route, Link, Redirect, BrowserRouter as Router } from 'react-router-dom'
 import axios from 'axios';
 
-export default function Search() {
+export default function Search({config}) {
   const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
   const [ticker, setTicker] = useState(null);
-  const [stockData, setStockData] = useState([]);
+  const [name, setName] = useState(null);
+//   const [stockData, setStockData] = useState([]);
+  const urlPost = '/api/stocks/';
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -19,6 +21,14 @@ export default function Search() {
             // console.log(data[0]["6. marketClose"])
         })
     }
+
+    const addFavorite = (fave) => {
+        axios.post(urlPost, fave, config)
+         .then(function(response) {
+          console.log(response)
+        });
+    }
+
 
     // const handleStockDetail = (event) => {
     //     event.preventDefault();
@@ -49,7 +59,14 @@ export default function Search() {
     </div>
         <div>
             {data.map((data, index) => {
-            return <div onClick={() => setTicker(data['1. symbol'])} key={index}>{data['2. name']}</div>})}
+            return <div onClick={() => {
+                let fave = {
+                    name: data['2. name'],
+                    ticker: data['1. symbol']
+                }
+                addFavorite(fave)
+            }} key={index}>{data['2. name']}</div>
+            })}
         </div>
     </>
   );
@@ -57,3 +74,5 @@ export default function Search() {
 
 
 // handleStockDetail(data['1. symbol'])}
+
+// setTicker(data['1. symbol'])}

@@ -4,37 +4,55 @@ import axios from "axios";
 
 export default function Favorites({config}) {
     const [favorites, setFavorites] = useState([]);
-    const url = '/api/stocks';
+    const [id, setId] = useState(null);
+    const [name, setName] = useState(null);
+    const urlAll = '/api/stocks';
+    const urlDelete = '/api/stocks/';
+    // const urlUpdate = '/api/stocks/:sid';
 
     useEffect(() =>{
-        axios.get(url, config)
-         .then(res => {
+        axios.get(urlAll, config)
+            .then(res => {
             let favorites = res.data
             setFavorites(favorites)
         })
     },[])
+
+    function handleDelete(current) {
+        console.log(current._id)
+        axios.delete(urlDelete + current._id, config)
+        .then(function(response) {
+            console.log(response)
+            axios.get(urlAll, config)
+                .then(res => {
+                let favorites = res.data
+                setFavorites(favorites)
+            })
+        });
+    }
+
+    // function handleUpdate() {
+    //     console.log(id)
+    //     axios.put(urlUpdate, {
+        //     name: name
+        // }, config)
+    //     .then(res => {
+    //     handleUpdate(res.data)
+    //     })
+    // }
+
     
   return (
     <div>
     {favorites.map((favorite, index) => {
-    return <div key={index}>{favorite.name} - {favorite.ticker}</div>})}
-</div>
+    return <div onClick={() => {
+        let current = {
+            _id: favorite._id,
+            name: favorite.name
+        }
+            handleDelete(current)
+        }} key={index}>{favorite.name} - {favorite.ticker} </div>
+    })}
+    </div>
   );
 }
-
-
-
-// const Planets = () => {
-//   const [hasError, setErrors] = useState(false);
-//   const [planets, setPlanets] = useState({});
-
-//   useEffect(() =>
-//     fetch("https://swapi.co/api/planets/4/")
-//       .then(res => res.json())
-//       .then(res => this.setState({ planets: res }))
-//       .catch(() => this.setState({ hasErrors: true }))
-//   );
-
-//   return <div>{JSON.stringify(planets)}</div>;
-// };
-// export default Planets;
