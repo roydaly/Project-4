@@ -7,6 +7,7 @@ const RateLimit = require('express-rate-limit');
 
 const app = express();
 
+app.use(express.static(__dirname + '/client/build'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(helmet());
@@ -24,7 +25,8 @@ const signupLimiter = new RateLimit({
     message: 'Maximum accounts created. Please try again later.'
 })
 
-mongoose.connect('mongodb://localhost/jwtAuth', {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI);
+// mongoose.connect('mongodb://localhost/jwtAuth', {useNewUrlParser: true});
 
 const db = mongoose.connection;
 db.once('open', () => {
@@ -39,6 +41,9 @@ db.on('error', (err) => {
 
 app.use('/auth', require('./routes/auth'));
 app.use('/api', expressJWT({secret: process.env.JWT_SECRET}), require('./routes/api'));
+app.get('*', function(req, res) {
+	res.sendFile(__dirname + '/client/build/index.html');
+});
 
 app.listen(process.env.PORT, () => {
     console.log(`You're listening to ${process.env.PORT}.......`);
